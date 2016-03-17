@@ -25,18 +25,28 @@ const config = {
       index: 'index.html'
     }
   },
-  js: {
-    files: [
-      `${APP_ROOT}/js/**/*.js`
-    ],
-    vendor: {
+  vendor: {
+    js: {
       output: {
         filename: 'vendor.js'
       },
       files: [
         'node_modules/jquery/dist/jquery.min.js'
       ]
+    },
+    style: {
+      output: {
+        filename: 'vendor.css'
+      },
+      files: [
+        'node_modules/sanitize.css/sanitize.css'
+      ]
     }
+  },
+  js: {
+    files: [
+      `${APP_ROOT}/js/**/*.js`
+    ],
   },
   webpack: {
     entry: `${APP_ROOT}/js/app.js`,
@@ -67,7 +77,6 @@ const config = {
   },
   style: {
     output: {
-      buildDirectory: `${path.resolve(__dirname)}/tmp`,
       filename: 'style.css'
     },
     files: [
@@ -107,6 +116,22 @@ gulp.task('server', () => {
 gulp.task('reloadServer', () => {
   browserSync.reload();
 });
+
+gulp.task('vendor-js', () => {
+  return gulp.src(config.vendor.js.files)
+  .pipe(plumber(plumberNotifier('vendor-js')))
+  .pipe(concat(config.vendor.js.output.filename))
+  .pipe(plumber.stop())
+  .pipe(gulp.dest(config.dist.directory));
+});
+gulp.task('vendor-css', () => {
+  return gulp.src(config.vendor.style.files)
+  .pipe(plumber(plumberNotifier('vendor-css')))
+  .pipe(concat(config.vendor.style.output.filename))
+  .pipe(plumber.stop())
+  .pipe(gulp.dest(config.dist.directory));
+});
+gulp.task('vendor', ['vendor-js', 'vendor-css']);
 
 gulp.task('styles', () => {
   return gulp.src(config.style.files)
@@ -157,14 +182,6 @@ gulp.task('lint', () => {
   .pipe(eslint.failOnError())
   .pipe(plumber.stop());
 });
-gulp.task('vendor', () => {
-  return gulp.src(config.js.vendor.files)
-  .pipe(plumber(plumberNotifier('vendor')))
-  .pipe(concat(config.js.vendor.output.filename))
-  .pipe(plumber.stop())
-  .pipe(gulp.dest(config.dist.directory));
-});
-
 gulp.task('build', ['vendor', 'webpack', 'styles'], () => {});
 gulp.task('watch', ['watch-webpack', 'watch-styles'], () => {
   gulp.watch([
