@@ -1,0 +1,6 @@
+{
+  "json_class": "Chef:Environment",
+  "default_attributes": {
+    "env": "production"
+  }
+}

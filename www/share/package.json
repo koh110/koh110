@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "gulp lint"
+  },
+  "author": "koh110",
+  "dependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.5.0",
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-pleeease": "^2.0.2",
+    "gulp-plumber": "^1.1.0",
+    "jquery": "^2.2.1",
+    "node-notifier": "^4.5.0",
+    "webpack": "^1.12.14"
+  }
+}
