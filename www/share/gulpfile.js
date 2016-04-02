@@ -3,12 +3,13 @@
 const path = require('path');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
-const pleeease = require('gulp-pleeease');
 const plumber = require('gulp-plumber');
 const eslint = require('gulp-eslint');
 const webpack = require('webpack');
 const browserSync = require('browser-sync');
 const notifier = require('node-notifier');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 // アプリケーションの配置ディレクトリ
 const APP_ROOT = `${path.resolve(__dirname)}`;
@@ -31,7 +32,8 @@ const config = {
         filename: 'vendor.js'
       },
       files: [
-        'node_modules/jquery/dist/jquery.min.js'
+        'node_modules/react/dist/react.min.js',
+        'node_modules/react-dom/dist/react-dom.min.js'
       ]
     },
     style: {
@@ -43,52 +45,74 @@ const config = {
       ]
     }
   },
-  js: {
+  scripts: {
     files: [
-      `${APP_ROOT}/js/**/*.js`
-    ],
+      `${APP_ROOT}/components/**/*.js`,
+      `${APP_ROOT}/components/**/*.jsx`
+    ]
   },
   webpack: {
-    entry: `${APP_ROOT}/js/app.js`,
+    entry: `${APP_ROOT}/components/app.js`,
     devtool: '#source-map',
     output: {
       path: `${APP_ROOT}/public/dist`,
-      filename: 'app.js'
+      filename: 'app.js',
+      publicPath: (process.env.NODE_ENV === 'local') ? 'http://localhost:8282/dist' : '/dist'
     },
     externals: {
-      document: 'document',
-      jquery: '$'
+      jquery: '$',
+      react: 'React',
+      'react-dom': 'ReactDOM'
     },
     resolve: {
-      root: `${APP_ROOT}/js`,
-      extensions: ['', '.js']
+      root: `${APP_ROOT}/components`,
+      extensions: ['', '.js', '.jsx']
     },
     module: {
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           loader: 'babel-loader',
           query: {
-            presets: ['es2015']
+            presets: ['react', 'es2015']
           }
+        },
+        {
+          test: /\.(jpg|jpeg|png|gif|svg)$/,
+          loader: 'file?name=/images/[name].[ext]'
+        },
+        {
+          test: /\.css$/,
+          loaders: [
+            'style-loader',
+            'css-loader?sourceMap',
+            'postcss-loader?sourceMap'
+          ]
+        },
+        {
+          test: /\.scss$/,
+          loaders: [
+            'style-loader',
+            'css-loader?sourceMap',
+            'postcss-loader?sourceMap'
+          ]
         }
       ]
-    }
-  },
-  style: {
-    output: {
-      filename: 'style.css'
     },
-    files: [
-      `${APP_ROOT}/styles/**/*.scss`
-    ],
-    prefixer: [
-      'last 1 versions',
-      'ie >= 11',
-      'safari >= 9',
-      'ios >= 9',
-      'android >= 5'
-    ]
+    postcss: () => {
+      return {
+        defaults: [autoprefixer, precss],
+        cleaner: [autoprefixer({
+          browsers: [
+            'last 1 versions',
+            'ie >= 11',
+            'safari >= 9',
+            'ios >= 9',
+            'android >= 5'
+          ]
+        })]
+      };
+    }
   }
 };
 
@@ -106,7 +130,7 @@ const plumberNotifier = (taskName) => {
         time: 3000
       });
     }
-  }
+  };
 };
 
 gulp.task('server', () => {
@@ -133,25 +157,6 @@ gulp.task('vendor-css', () => {
 });
 gulp.task('vendor', ['vendor-js', 'vendor-css']);
 
-gulp.task('styles', () => {
-  return gulp.src(config.style.files)
-  .pipe(plumber(plumberNotifier('styles')))
-  .pipe(pleeease({
-    autoprefixer: {
-      browsers: config.style.prefixer
-    },
-    sass: true,
-    minifier: false,
-    out: config.style.output.filename
-  }))
-  .pipe(plumber.stop())
-  .pipe(gulp.dest(config.dist.directory));
-});
-gulp.task('watch-styles', () => {
-  gulp.watch(config.style.files, ['styles']);
-});
-
-// js系処理
 const webpackBuild = (conf, cb) => {
   webpack(conf, (err) => {
     if (err) {
@@ -175,19 +180,18 @@ gulp.task('watch-webpack', ['lint'], (cb) => {
   webpackBuild(conf, cb);
 });
 gulp.task('lint', () => {
-  return gulp.src(config.js.files)
+  return gulp.src(config.scripts.files)
   .pipe(plumber(plumberNotifier('lint')))
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failOnError())
   .pipe(plumber.stop());
 });
-gulp.task('build', ['vendor', 'webpack', 'styles'], () => {});
-gulp.task('watch', ['watch-webpack', 'watch-styles'], () => {
+gulp.task('build', ['vendor', 'webpack'], () => {});
+gulp.task('watch', ['watch-webpack'], () => {
   gulp.watch([
-    `${APP_ROOT}/index.html`,
-    `${config.webpack.output.path}/${config.webpack.output.filename}`,
-    `${config.dist.directory}/${config.style.output.filename}`
+    `${APP_ROOT}/public/index.html`,
+    `${config.webpack.output.path}/${config.webpack.output.filename}`
   ], ['reloadServer']);
 });
 gulp.task('default', ['build', 'watch', 'server']);

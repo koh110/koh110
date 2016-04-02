@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+:local .footer {
+  background: #1b244b;
+  display: flex;
+  justify-content: center;
+  color: #8c9398;
+  .copy {
+    font-weight: 100;
+  }
+}

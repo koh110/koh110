@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+:local .top {
+  background-color: #505393;
+  color: #FFF;
+  h1 {
+    background: none;
+  }
+  .profile {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 20px 20px;
+  }
+  .icon {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background: url("contents/profile/img/icon.jpg") no-repeat left top;
+    background-size: 100% 100%;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+  }
+  .description {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    .detail {
+      margin: 0 0 0 20px;
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+}

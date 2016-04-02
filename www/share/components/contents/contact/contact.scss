@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+:local .contact {
+  background-color: #f37b62;
+  color: #fef5f3;
+  .detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .mail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1.5em 0 0 0;
+      padding: 0 1.5em;
+      height: 3em;
+      box-shadow: inset 0 0 0 2px #FFF;
+      color: #FFF;
+      border-radius: 3px;
+      p {
+        $space: .35em;
+        letter-spacing: $space;
+        margin: 0 0 0 $space ;
+      }
+    }
+  }
+}

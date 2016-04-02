@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+:local .work {
+  background-color: #e5e5e5;
+  a {
+    color: inherit;
+  }
+  .cards {
+    display: flex;
+  }
+  .card {
+    margin: 10px;
+    background: #FFF;
+    color: #1d242a;
+    box-shadow: 0px 1px 1px #BBB4A5;
+    opacity: 1;
+    max-width: 300px;
+    height: 100%;
+    .inner {
+      padding: 20px;
+    }
+    h2 {
+      font-size: 20px;
+      padding: 0 0 5px 0;
+      border-bottom: solid 2px #1b244b;
+    }
+    figure {
+      margin: 10px 0;
+      text-align: center;
+    }
+  }
+}

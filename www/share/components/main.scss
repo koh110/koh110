@@ -1,0 +1,27 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+@import url(https://fonts.googleapis.com/css?family=Asap);
+
+html, body , .target, .wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  color: #FFF;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+.contents-wrapper {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+}

@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+$image-path: contents/profile/social/img/;
+
+:local .social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px 0 0 0;
+  p {
+    margin: 0 0 .2em 7px;
+  }
+  .social-icon-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 15px 0 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+  $icon-size: 25;
+  .social-icon {
+    color: rgba(255, 255, 255, 0.7);
+    height: $(icon-size)px;
+    width: $(icon-size)px;
+    &:before {
+      font-size: $(icon-size)px
+    }
+  }
+  .hatena {
+    background: url("$(image-path)/hatena.svg") no-repeat center center;
+    background-size: contain;
+  }
+  .hatena-blog {
+    background: url("$(image-path)/hatenablog-logo.svg") no-repeat center center;
+    background-size: 130%;
+  }
+  .qiita {
+    background: url("$(image-path)/qiita-favicon.png") no-repeat center center;
+    background-size: 95%;
+  }
+}
