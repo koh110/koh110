@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 :local .work {
-  background-color: #e5e5e5;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+  color: #FFF;
   a {
     color: inherit;
   }

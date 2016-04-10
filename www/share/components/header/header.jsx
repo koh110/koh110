@@ -15,12 +15,12 @@ module.exports = React.createClass({
       animation: 'start'
     };
   },
-  onScroll: function() {
-    this.state.fixed = window.scrollY > 300;
+  onScroll: function(e) {
+    this.state.fixed = e.target.scrollTop > 500;
     this.setState(this.state);
   },
   componentDidMount: function() {
-    window.addEventListener('scroll', this.onScroll);
+    document.querySelector('.wrapper').addEventListener('scroll', this.onScroll);
     const typing = () => {
       setTimeout(() => {
         this.state.title = title.slice(0, this.state.title.length + 1);

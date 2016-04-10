@@ -2,9 +2,7 @@
 
 :local .about {
   color: #FFF;
-  background: linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("contents/about/img/bg.jpg") no-repeat center center;
-  background-size: cover;
+  background: #1b244b;
   .detail {
     display: flex;
     flex-direction: column;

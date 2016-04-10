@@ -12,11 +12,11 @@ const Wrapper = React.createClass({
   render() {
     return (
       <div className="wrapper">
+        <Header />
         <div className="contents-wrapper">
-          <Header />
           <Contents />
-          <Footer />
         </div>
+        <Footer />
       </div>
     );
   }
