@@ -191,6 +191,7 @@ gulp.task('build', ['vendor', 'webpack'], () => {});
 gulp.task('watch', ['watch-webpack'], () => {
   gulp.watch([
     `${APP_ROOT}/public/index.html`,
+    `${APP_ROOT}/components/**/*.scss`,
     `${config.webpack.output.path}/${config.webpack.output.filename}`
   ], ['reloadServer']);
 });

@@ -44,7 +44,7 @@ module.exports = React.createClass({
           <i className={hatenaBlog}></i>
         </a>
         <a className={style['social-icon-wrapper']} target="_blank"
-          href="http://koh110.hatenablog.com/">
+          href="http://qiita.com/koh110">
           <i className={qiita}></i>
         </a>
       </div>

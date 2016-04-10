@@ -3,32 +3,50 @@
 const React = require('react');
 const classNames = require('classnames');
 
-const style = require('header/header.scss');
+require('header/header.scss');
 
 const title = 'koh110\'s LAB';
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return { scrollY: window.scrollY };
+    return {
+      fixed: false,
+      title: '',
+      animation: 'start'
+    };
   },
   onScroll: function() {
-    this.setState({ scrollY: window.scrollY });
+    this.state.fixed = window.scrollY > 300;
+    this.setState(this.state);
   },
   componentDidMount: function() {
     window.addEventListener('scroll', this.onScroll);
+    const typing = () => {
+      setTimeout(() => {
+        this.state.title = title.slice(0, this.state.title.length + 1);
+        if (this.state.title.length === title.length) {
+          this.state.animation = 'end';
+        } else {
+          typing();
+        }
+        this.setState(this.state);
+      }, 200);
+    };
+    typing();
   },
   render() {
-    const fixed = this.state.scrollY > 275;
     const object = {};
-    object[style['js-fixed']] = fixed;
-    const headerClass = classNames(style.header, object);
+    object['js-fixed'] = this.state.fixed;
+    object['js-animation-end'] = this.state.animation === 'end';
+    const headerClass = classNames('header', object);
     return (
       <header className={headerClass}>
-        <div className={style.title}>
-          <h1 className={style.main}>{title}</h1>
-          <h2 className={style.sub}>my tech laboratory</h2>
+        <div className="title">
+          <h1 className="main">{this.state.title}</h1>
+          <h2 className="sub">my tech laboratory</h2>
+          <div className="scroll">Scroll</div>
         </div>
-        <div className={style['fixed-header']}>{title}</div>
+        <div className="fixed-header">{title}</div>
       </header>
     );
   }

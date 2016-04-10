@@ -13,18 +13,26 @@ $image-path: contents/profile/social/img/;
   .social-icon-wrapper {
     display: flex;
     align-items: center;
-    margin: 0 15px 0 0;
+    margin: 0 20px 0 0;
     &:last-child {
       margin: 0;
     }
-  }
-  $icon-size: 25;
-  .social-icon {
-    color: rgba(255, 255, 255, 0.7);
-    height: $(icon-size)px;
-    width: $(icon-size)px;
-    &:before {
-      font-size: $(icon-size)px
+    $icon-size: 25;
+    .social-icon {
+      color: rgba(255, 255, 255, 0.7);
+      height: $(icon-size)px;
+      width: $(icon-size)px;
+      transition: all .2s ease-out;
+      &:before {
+        font-size: $(icon-size)px
+      }
+    }
+    &:hover {
+      .social-icon {
+        color: rgba(255, 255, 255, 1);
+        transition: all .2s ease-out;
+        transform: scale(1.15);
+      }
     }
   }
   .hatena {
