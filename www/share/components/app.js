@@ -25,6 +25,6 @@ const Wrapper = React.createClass({
 document.addEventListener('DOMContentLoaded', (event) => {
   ReactDOM.render(
     <Wrapper />,
-    document.querySelector('.target')
+    document.body
   );
 });
