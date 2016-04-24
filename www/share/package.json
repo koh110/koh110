@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=local gulp",
+    "start": "gulp",
     "build": "gulp build",
     "test": "eslint ./scripts/**/* -c .eslintrc"
   },
@@ -31,7 +31,6 @@
     "redux": "^3.3.1",
     "sanitize.css": "^3.3.0",
     "style-loader": "^0.13.0",
-    "url-loader": "^0.5.7",
     "webpack": "^1.12.14"
   }
 }

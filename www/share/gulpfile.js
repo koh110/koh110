@@ -32,7 +32,7 @@ const config = {
         filename: 'vendor.js'
       },
       files: [
-        'node_modules/react/dist/react.min.js',
+        'node_modules/react/dist/react.js',
         'node_modules/react-dom/dist/react-dom.min.js'
       ]
     },
@@ -57,7 +57,7 @@ const config = {
     output: {
       path: `${APP_ROOT}/public/dist`,
       filename: 'app.js',
-      publicPath: (process.env.NODE_ENV === 'local') ? 'http://localhost:8282/dist' : '/dist'
+      publicPath: '/dist/'
     },
     externals: {
       jquery: '$',
@@ -79,22 +79,14 @@ const config = {
         },
         {
           test: /\.(jpg|jpeg|png|gif|svg)$/,
-          loader: 'file?name=/images/[name].[ext]'
+          loader: 'file?name=images/[name].[ext]'
         },
         {
-          test: /\.css$/,
+          test: /\.s?css$/,
           loaders: [
             'style-loader',
-            'css-loader?sourceMap',
-            'postcss-loader?sourceMap'
-          ]
-        },
-        {
-          test: /\.scss$/,
-          loaders: [
-            'style-loader',
-            'css-loader?sourceMap',
-            'postcss-loader?sourceMap'
+            'css-loader',
+            'postcss-loader'
           ]
         }
       ]

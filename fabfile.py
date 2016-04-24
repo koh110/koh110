@@ -64,7 +64,7 @@ def deploy():
         default_opts='-av', ssh_opts=env.ssh_opts,
         delete=True,
         exclude=[
-
+            'www/share/public/dist'
         ],
         local_dir=local_directory + '/',
         remote_dir=env.deploy_dir + '/', capture=True)
@@ -85,3 +85,7 @@ def deploy():
     node_version = run('node -v', quiet=True)
     if not re.search('^v[0-9]+\.[0-9]+\.[0-9]+', node_version):
         avot('nodejs version parse failed')
+
+    with cd('/var/www/share'):
+        run('npm install')
+        run('npm run build')
