@@ -12,13 +12,16 @@ $image-path: ~contents/profile/social/img/;
   }
   .social-icon-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0 20px 0 0;
+    padding: 0 20px 10px 0;
     &:last-child {
       margin: 0;
     }
     $icon-size: 25;
     .social-icon {
+      text-align: center;
+      vertical-align: middle;
       color: rgba(255, 255, 255, 0.7);
       height: $(icon-size)px;
       width: $(icon-size)px;

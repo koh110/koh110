@@ -8,6 +8,8 @@
   }
   .cards {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .card {
     font-size: 12pt;
@@ -16,6 +18,7 @@
     color: #1d242a;
     box-shadow: 0px 1px 1px #BBB4A5;
     opacity: 1;
+    min-width: 200px;
     max-width: 300px;
     height: 100%;
     .inner {
