@@ -12,6 +12,8 @@ body {
   font-family: 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   color: #FFF;
   font-size: 13pt;
+  background: url("~img/bg.jpg") no-repeat center center;
+  background-size: cover;
 }
 
 h1 {
@@ -20,11 +22,6 @@ h1 {
 
 h2 {
   font-size: 15px;
-}
-
-.wrapper {
-  background: url("~img/bg.jpg") no-repeat center center;
-  background-size: cover;
 }
 
 .contents-wrapper {

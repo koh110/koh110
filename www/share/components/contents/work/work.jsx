@@ -27,7 +27,8 @@ const cards = [{
     '/twit-web-switcher/hedkbblkbhiagpppkgcbmkojnlphmcca?hl=ja'
   ].join(''),
   image: {
-    src: require('contents/work/img/twit-web-switcher.png')
+    src: require('contents/work/img/twit-web-switcher.png'),
+    width: '100'
   },
   description: 'twitterのアカウントを切り替えるchrome拡張'
 }, {

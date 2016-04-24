@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-$image-path: contents/profile/social/img/;
+$image-path: ~contents/profile/social/img/;
 
-:local .social {
+.social {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

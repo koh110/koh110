@@ -1,18 +1,19 @@
 'use strict';
 
 const React = require('react');
+require('contents/profile/profile.scss');
+
 const Social = require('contents/profile/social/social');
-const style = require('contents/profile/profile.scss');
 
 module.exports = React.createClass({
   render() {
     return (
-      <section className={style.top}>
+      <section className="profile">
         <h1>PROFILE</h1>
-        <div className={style.profile}>
-          <div className={style.description}>
-            <figure className={style.icon}>icon</figure>
-            <div className={style.detail}>
+        <div className="profile">
+          <div className="description">
+            <figure className="icon">icon</figure>
+            <div className="detail">
               <h2>KOHTA ITO</h2>
               <div>
                 <p>cssからフロントエンド, サーバサイド, 構成管理までWebならなんでも。</p>

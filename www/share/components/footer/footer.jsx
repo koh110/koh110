@@ -2,15 +2,15 @@
 
 const React = require('react');
 
-const style = require('footer/footer.scss');
+require('footer/footer.scss');
 
 const year = new Date().getFullYear();
 
 module.exports = React.createClass({
   render() {
     return (
-      <footer className={style.footer}>
-        <p className={style.copy}>© {year} kohta ito. All Rights Reserved.</p>
+      <footer className="footer">
+        <p className="copy">© {year} kohta ito. All Rights Reserved.</p>
       </footer>
     );
   }
