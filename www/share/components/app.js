@@ -4,6 +4,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const classNames = require('classnames');
 
+require('ga');
 require('main.scss');
 const Contents = require('contents/contents');
 const Header = require('header/header');
