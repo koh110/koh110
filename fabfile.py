@@ -64,7 +64,7 @@ def deploy():
         default_opts='-av', ssh_opts=env.ssh_opts,
         delete=True,
         exclude=[
-            'www/share/public/dist'
+            'share/public/dist/'
         ],
         local_dir=local_directory + '/',
         remote_dir=env.deploy_dir + '/', capture=True)
