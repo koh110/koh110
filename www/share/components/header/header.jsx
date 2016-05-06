@@ -44,8 +44,8 @@ module.exports = React.createClass({
         <div className="title">
           <h1 className="main">{this.state.title}</h1>
           <h2 className="sub">my tech laboratory</h2>
-          <div className="scroll">Scroll</div>
         </div>
+        <div className="scroll">Scroll</div>
         <div className="fixed-header">{title}</div>
       </header>
     );
