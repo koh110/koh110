@@ -274,11 +274,6 @@ execute "test-nginx-configuration" do
   action :nothing
 end
 
-service "nginx" do
-  supports :status => true, :restart => true, :reload => true
-  action [:enable, :start]
-end
-
 file "/etc/nginx/nginx.conf" do
   owner "root"
   group "root"
@@ -329,4 +324,9 @@ http {
   EOF
 notifies :run, "execute[test-nginx-configuration]", :delayed
 notifies :reload, "service[nginx]", :delayed
+end
+
+service "nginx" do
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
 end
