@@ -2,7 +2,7 @@
 
 const React = require('react');
 const classNames = require('classnames');
-require('contents/profile/social/social.scss');
+require('./social.scss');
 
 const socials = [{
   url: 'https://github.com/koh110',

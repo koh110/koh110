@@ -2,8 +2,8 @@
 
 const React = require('react');
 
-require('contents/work/work.scss');
-const Card = require('contents/work/card');
+require('./work.scss');
+const Card = require('./card');
 
 const cards = [{
   title: 'outerclick',

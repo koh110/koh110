@@ -2,7 +2,7 @@
 
 const React = require('react');
 
-require('footer/footer.scss');
+require('./footer.scss');
 
 const year = new Date().getFullYear();
 

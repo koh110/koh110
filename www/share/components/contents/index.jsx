@@ -1,12 +1,12 @@
 'use strict';
 
 const React = require('react');
-require('contents/contents.scss');
+require('./contents.scss');
 
-const About = require('contents/about/about');
-const Work = require('contents/work/work');
-const Profile = require('contents/profile/profile');
-const Contact = require('contents/contact/contact');
+const About = require('./about');
+const Work = require('./work');
+const Profile = require('./profile');
+const Contact = require('./contact');
 
 module.exports = React.createClass({
   render() {

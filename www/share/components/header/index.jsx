@@ -3,7 +3,7 @@
 const React = require('react');
 const classNames = require('classnames');
 
-require('header/header.scss');
+require('./header.scss');
 
 const title = 'koh110\'s LAB';
 

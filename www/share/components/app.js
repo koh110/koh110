@@ -6,9 +6,9 @@ const classNames = require('classnames');
 
 require('ga');
 require('main.scss');
-const Contents = require('contents/contents');
-const Header = require('header/header');
-const Footer = require('footer/footer');
+const Contents = require('contents');
+const Header = require('header');
+const Footer = require('footer');
 
 const smartphone = /iphone|android/.test(window.navigator.userAgent.toLowerCase());
 

@@ -1,9 +1,9 @@
 'use strict';
 
 const React = require('react');
-require('contents/profile/profile.scss');
+require('./profile.scss');
 
-const Social = require('contents/profile/social/social');
+const Social = require('./social');
 
 module.exports = React.createClass({
   render() {

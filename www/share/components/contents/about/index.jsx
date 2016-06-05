@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-require('contents/about/about.scss');
+require('./about.scss');
 
 module.exports = React.createClass({
   render() {
