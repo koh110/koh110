@@ -16,8 +16,7 @@ env.remote_interrupt = True
 env.use_ssh_config = True
 env.forward_agent = True
 env.chef_url = ' '.join([
-    'https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/10.04/x86_64/',
-    'chef_12.8.1-1_amd64.deb'
+    'https://packages.chef.io/stable/ubuntu/12.04/chef_12.13.37-1_amd64.deb'
 ])
 
 env.ssh_opts = ''
