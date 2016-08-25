@@ -208,12 +208,12 @@ directory "#{nodejs_directory}" do
   action :create
 end
 
-nodejs_version = "6.0.0"
+nodejs_version = "6.4.0"
 
 # http://nodejs.org/dist/v{#nodejs_version}/SHASUMS256.txt
 remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
   source "http://nodejs.org/dist/v#{nodejs_version}/node-v#{nodejs_version}-linux-x64.tar.gz"
-  checksum "78fa76c77a1168095cf5b8a5018e00e7212d11e485cf10c77ce1c8af4955cdd3"
+  checksum "990636e44b9f7a270cf82f988e5faecb5850fcda9580da65e5721b90ed3dddb2"
   action :create_if_missing
 end
 
@@ -250,7 +250,7 @@ directory "/var/www/share/public" do
   action :create
 end
 
-nginx_version = "1.9.12-1"
+nginx_version = "1.11.3-1"
 
 # http://nginx.org/en/linux_packages.html
 remote_file "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb" do
