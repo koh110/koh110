@@ -6,6 +6,21 @@ require('./work.scss');
 const Card = require('./card');
 
 const cards = [{
+  title: 'japanese-date',
+  url: 'https://www.npmjs.com/package/japanese-date',
+  image: {
+    src: [
+      'https://external.xx.fbcdn.net/safe_image.php',
+      '?d=AQAtGjSp_kJMuM9C&w=470&h=246',
+      '&url=https%3A%2F%2Fwww.npmjs.com%2Fstatic%2Fimages%2Ftouch-icons%2Fopen-graph.png',
+      '&cfs=1&upscale=1&ext=png2jpg'
+    ].join('')
+  },
+  description: [
+    '日本語からDateオブジェクトを取得するparser',
+    'botに使うために作成'
+  ].join('\n')
+}, {
   title: 'outerclick',
   url: 'https://www.npmjs.com/package/outerclick',
   image: {
