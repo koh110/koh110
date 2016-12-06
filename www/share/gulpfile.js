@@ -8,13 +8,9 @@ const eslint = require('gulp-eslint');
 const webpack = require('webpack');
 const browserSync = require('browser-sync');
 const notifier = require('node-notifier');
-const autoprefixer = require('autoprefixer');
-const precss = require('precss');
 
-// アプリケーションの配置ディレクトリ
 const APP_ROOT = `${path.resolve(__dirname)}`;
 
-// 設定
 const config = {
   dist: {
     directory: `${APP_ROOT}/public/dist`
@@ -60,51 +56,68 @@ const config = {
       publicPath: '/dist/'
     },
     externals: {
-      jquery: '$',
       react: 'React',
       'react-dom': 'ReactDOM'
     },
     resolve: {
-      root: `${APP_ROOT}/components`,
-      extensions: ['', '.js', '.jsx']
+      modules: [
+        'node_modules',
+        `${APP_ROOT}/components`
+      ],
+      extensions: ['.js', '.jsx']
     },
     module: {
-      loaders: [
-        {
-          test: /\.jsx?$/,
+      rules: [{
+        test: /\.jsx?$/,
+        use: [{
           loader: 'babel-loader',
-          query: {
-            presets: ['react', 'es2015']
+          options: {
+            presets: ['react', ['es2015', { 'modules': false }]]
           }
-        },
-        {
-          test: /\.(jpg|jpeg|png|gif|svg)$/,
-          loader: 'file?name=images/[name].[ext]'
-        },
-        {
-          test: /\.s?css$/,
-          loaders: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader'
-          ]
-        }
-      ]
+        }]
+      }, {
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'images/[hash].[ext]'
+          }
+        }]
+      }, {
+        test: /\.s?css$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => {
+              const autoprefixer = require('autoprefixer');
+              const precss = require('precss');
+              return {
+                defaults: [autoprefixer, precss],
+                cleaner: [autoprefixer({
+                  browsers: [
+                    'last 1 versions',
+                    'ie >= 11',
+                    'safari >= 9',
+                    'ios >= 9',
+                    'android >= 5'
+                  ]
+                })]
+              };
+            }
+          }
+        }]
+      }]
     },
-    postcss: () => {
-      return {
-        defaults: [autoprefixer, precss],
-        cleaner: [autoprefixer({
-          browsers: [
-            'last 1 versions',
-            'ie >= 11',
-            'safari >= 9',
-            'ios >= 9',
-            'android >= 5'
-          ]
-        })]
-      };
-    }
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        include: /\.js$/,
+        minimize: true
+      })
+    ]
   }
 };
 
@@ -152,9 +165,8 @@ gulp.task('vendor', ['vendor-js', 'vendor-css']);
 const webpackBuild = (conf, cb) => {
   webpack(conf, (err) => {
     if (err) {
-      /* eslint-disable no-console */
+      // eslint-disable-next-line no-console
       console.error(err);
-      /* eslint-enable no-console */
       throw err;
     }
     if (!cb.called) {
@@ -182,9 +194,9 @@ gulp.task('lint', () => {
 gulp.task('build', ['vendor', 'webpack'], () => {});
 gulp.task('watch', ['watch-webpack'], () => {
   gulp.watch([
-    `${APP_ROOT}/public/index.html`,
-    `${APP_ROOT}/components/**/*.scss`,
-    `${config.webpack.output.path}/${config.webpack.output.filename}`
+    `${APP_ROOT}/public/**/*.html`,
+    `${APP_ROOT}/public/**/*.js`,
+    `${APP_ROOT}/public/**/*.css`
   ], ['reloadServer']);
 });
 gulp.task('default', ['build', 'watch', 'server']);
