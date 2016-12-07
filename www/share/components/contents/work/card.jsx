@@ -24,10 +24,12 @@ module.exports = React.createClass({
         <a href={this.props.data.url} target="_blank">
           <div className="inner">
             <h2>{this.props.data.title}</h2>
-            <figure>
-              <img src={this.props.data.image.src} width={imageWidth}/>
-            </figure>
-            {desc}
+            <div>
+              <figure>
+                <img src={this.props.data.image.src} width={imageWidth}/>
+              </figure>
+              <div className="description">{desc}</div>
+            </div>
           </div>
         </a>
       </div>

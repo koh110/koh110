@@ -12,6 +12,7 @@
     align-items: center;
   }
   .icon {
+    margin: 0;
     border-radius: 50%;
     height: 100px;
     min-width: 100px;
@@ -29,7 +30,7 @@
     align-items: center;
     .detail {
       margin: 0 0 0 20px;
-      font-size: 15px;
+      font-size: 18px;
       h2 {
         font-size: 20px;
         border-bottom: 1px solid #d3d4e4;

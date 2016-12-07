@@ -6,6 +6,13 @@ require('./work.scss');
 const Card = require('./card');
 
 const cards = [{
+  title: 'techblog',
+  url: 'https://techblog.yahoo.co.jp/advent-calendar-2016/pozzy/',
+  image: {
+    src: 'https://s.yimg.jp/images/tecblog/2016-2H/advent-image.png'
+  },
+  description: 'ヤフーの社内システムの紹介'
+}, {
   title: 'japanese-date',
   url: 'https://www.npmjs.com/package/japanese-date',
   image: {
@@ -31,10 +38,7 @@ const cards = [{
       '&cfs=1&upscale=1&ext=png2jpg'
     ].join('')
   },
-  description: [
-    '要素の外をクリックした時に発火するイベントハンドラを提供するJavaScriptライブラリ。',
-    'npmの練習用に作成'
-  ].join('\n')
+  description: '要素の外をクリックした時に発火するイベントハンドラを提供するJavaScriptモジュール'
 }, {
   title: 'twit-web-switcher',
   url: [
