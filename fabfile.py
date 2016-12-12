@@ -8,6 +8,8 @@ from fabric.utils import abort, puts
 
 env.application = 'koh110'
 env.configure_dir = '/var/configure'
+env.public_dir = '/var/www/share/public'
+env.page_dir = '/var/www/share/page'
 env.deploy_dir = '/var/www'
 env.runtime = 'development'
 
@@ -67,8 +69,8 @@ def deploy():
         default_opts='-av', ssh_opts=env.ssh_opts,
         delete=True,
         exclude=[
-            'share/public/dist/',
-            'share/node_modules/'
+            'share/page/dist/',
+            'share/page/node_modules/'
         ],
         local_dir=local_directory + '/',
         remote_dir=env.deploy_dir + '/', capture=True)
@@ -90,6 +92,8 @@ def deploy():
     if not re.search('^v[0-9]+\.[0-9]+\.[0-9]+', node_version):
         abort('nodejs version parse failed')
 
-    with cd('/var/www/share'):
+    with cd(env.page_dir):
         run('npm install')
         run('npm run build')
+
+    sudo('ln -nfs %s %s' % (env.page_dir + '/dist', env.public_dir))

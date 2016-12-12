@@ -244,10 +244,10 @@ directory "#{nginx_directory}" do
 end
 
 # Document Root
-directory "/var/www/share/public" do
+directory '/var/www/share/public' do
   recursive true
-  mode 0755
-  action :create
+  action :delete
+  not_if { File.symlink?('/var/www/share/public') }
 end
 
 nginx_version = "1.11.3-1"
