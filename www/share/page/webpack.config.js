@@ -1,17 +1,17 @@
 'use strict';
 
-const path = require('path');
 const webpack = require('webpack');
 
-const APP_ROOT = `${path.resolve(__dirname)}`;
+const APP_ROOT = __dirname;
+const DIST_DIRECTORY = `${APP_ROOT}/dist`;
 
 module.exports = {
   entry: `${APP_ROOT}/components/app.js`,
   devtool: '#source-map',
   output: {
-    path: `${APP_ROOT}/public/dist`,
+    path: DIST_DIRECTORY,
     filename: 'app.js',
-    publicPath: '/dist/'
+    publicPath: '/'
   },
   externals: {
     react: 'React',

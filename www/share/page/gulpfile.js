@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const plumber = require('gulp-plumber');
@@ -9,16 +8,17 @@ const webpack = require('webpack');
 const browserSync = require('browser-sync');
 const notifier = require('node-notifier');
 
-const APP_ROOT = `${path.resolve(__dirname)}`;
-const DIST_DIRECTORY = `${APP_ROOT}/public/dist`;
+const APP_ROOT = __dirname;
+const DIST_DIRECTORY = `${APP_ROOT}/dist`;
 
 const config = {
   server: {
     port: 8282,
     server: {
-      baseDir: `${APP_ROOT}/public`,
+      baseDir: DIST_DIRECTORY,
       index: 'index.html'
-    }
+    },
+    files: ['**/*.html', '**/*.js', '**/*.css']
   },
   vendor: {
     js: {
@@ -39,10 +39,10 @@ const config = {
       ]
     }
   },
-  scripts: {
+  lint: {
     files: [
-      `${APP_ROOT}/components/**/*.js`,
-      `${APP_ROOT}/components/**/*.jsx`
+      `${APP_ROOT}/**/*.js`,
+      `${APP_ROOT}/**/*.jsx`
     ]
   }
 };
@@ -87,6 +87,14 @@ gulp.task('vendor-css', () => {
   .pipe(gulp.dest(DIST_DIRECTORY));
 });
 gulp.task('vendor', ['vendor-js', 'vendor-css']);
+gulp.task('dist', ['vendor'], () => {
+  return gulp.src([
+    `${APP_ROOT}/index.html`,
+    `${APP_ROOT}/font-awesome/**/*.css`,
+    `${APP_ROOT}/font-awesome/**/*.woff2`
+  ], { base: APP_ROOT })
+  .pipe(gulp.dest(DIST_DIRECTORY));
+});
 
 const webpackBuild = (conf, cb) => {
   webpack(conf, (err) => {
@@ -110,19 +118,18 @@ gulp.task('watch-webpack', ['lint'], (cb) => {
   webpackBuild(conf, cb);
 });
 gulp.task('lint', () => {
-  return gulp.src(config.scripts.files)
+  return gulp.src(config.lint.files)
   .pipe(plumber(plumberNotifier('lint')))
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failOnError())
   .pipe(plumber.stop());
 });
-gulp.task('build', ['vendor', 'webpack'], () => {});
+gulp.task('build', ['dist', 'webpack'], () => {});
 gulp.task('watch', ['watch-webpack'], () => {
   gulp.watch([
-    `${APP_ROOT}/public/**/*.html`,
-    `${APP_ROOT}/public/**/*.js`,
-    `${APP_ROOT}/public/**/*.css`
-  ], ['reloadServer']);
+    `${APP_ROOT}/**/*.html`,
+    `${APP_ROOT}/**/*.css`
+  ], ['dist']);
 });
 gulp.task('default', ['build', 'watch', 'server']);
