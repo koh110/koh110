@@ -94,7 +94,7 @@ def deploy():
         abort('nodejs version parse failed')
 
     with cd(env.page_dir):
-        run('npm install')
+        run('npm install --no-save')
         run('npm run build')
 
     sudo('ln -nfs %s %s' % (env.page_dir + '/dist', env.public_dir))

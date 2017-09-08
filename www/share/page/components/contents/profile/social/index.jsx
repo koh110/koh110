@@ -17,7 +17,7 @@ const socials = [{
   url: 'https://jp.linkedin.com/in/ito-kohta-24078410b',
   classNames: ['fa', 'fa-linkedin-square']
 }, {
-  url: 'http://www.slideshare.net/kohta110',
+  url: 'https://www.slideshare.net/kohta110',
   classNames: ['fa', 'fa-slideshare']
 }, {
   url: 'http://b.hatena.ne.jp/koh110/',

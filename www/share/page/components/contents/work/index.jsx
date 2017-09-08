@@ -2,6 +2,7 @@
 
 const React = require('react');
 
+const npmImg = require('./img/npm-logo-simplifed-with-white-space.png');
 require('./work.scss');
 const Card = require('./card');
 
@@ -16,12 +17,7 @@ const cards = [{
   title: 'japanese-date',
   url: 'https://www.npmjs.com/package/japanese-date',
   image: {
-    src: [
-      'https://external.xx.fbcdn.net/safe_image.php',
-      '?d=AQAtGjSp_kJMuM9C&w=470&h=246',
-      '&url=https%3A%2F%2Fwww.npmjs.com%2Fstatic%2Fimages%2Ftouch-icons%2Fopen-graph.png',
-      '&cfs=1&upscale=1&ext=png2jpg'
-    ].join('')
+    src: npmImg
   },
   description: [
     '日本語からDateオブジェクトを取得するparser',
@@ -31,12 +27,7 @@ const cards = [{
   title: 'outerclick',
   url: 'https://www.npmjs.com/package/outerclick',
   image: {
-    src: [
-      'https://external.xx.fbcdn.net/safe_image.php',
-      '?d=AQAtGjSp_kJMuM9C&w=470&h=246',
-      '&url=https%3A%2F%2Fwww.npmjs.com%2Fstatic%2Fimages%2Ftouch-icons%2Fopen-graph.png',
-      '&cfs=1&upscale=1&ext=png2jpg'
-    ].join('')
+    src: npmImg
   },
   description: '要素の外をクリックした時に発火するイベントハンドラを提供するJavaScriptモジュール'
 }, {
@@ -46,15 +37,15 @@ const cards = [{
     '/twit-web-switcher/hedkbblkbhiagpppkgcbmkojnlphmcca?hl=ja'
   ].join(''),
   image: {
-    src: require('contents/work/img/twit-web-switcher.png'),
+    src: require('./img/twit-web-switcher.png'),
     width: '100'
   },
   description: 'twitterのアカウントを切り替えるchrome拡張'
 }, {
   title: 'techblog',
-  url: 'http://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/',
+  url: 'https://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/',
   image: {
-    src: 'http://i.yimg.jp/images/tecblog/2015-2H/advent_image.jpg'
+    src: 'https://i.yimg.jp/images/tecblog/2015-2H/advent_image.jpg'
   },
   description: 'Node.jsのES6対応について'
 }];

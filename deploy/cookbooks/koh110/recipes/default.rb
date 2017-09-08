@@ -200,6 +200,23 @@ exit 1
   notifies :run, 'execute[iptables]', :immediately
 end
 
+package 'letsencrypt' do
+  action :upgrade
+end
+
+cron 'renew-letsencrypt' do
+  action :create
+  minute '0'
+  hour '4'
+  day '1'
+  user 'root'
+  mailto 'koh110@gmail.com'
+  command %w[
+    sudo certonly --webroot -w /var/www/share/public -d koh110.com;
+    sudo service nginx reload
+  ].join(' ')
+end
+
 # install Node.js
 nodejs_directory = '/usr/local/src/nodejs'
 
@@ -210,7 +227,7 @@ directory nodejs_directory do
   action :create
 end
 
-nodejs_version = '6.4.0'
+nodejs_version = '8.4.0'
 
 # http://nodejs.org/dist/v{#nodejs_version}/SHASUMS256.txt
 remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
@@ -218,7 +235,7 @@ remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
     "http://nodejs.org/dist/v#{nodejs_version}",
     "/node-v#{nodejs_version}-linux-x64.tar.gz"
   ].join('')
-  checksum '990636e44b9f7a270cf82f988e5faecb5850fcda9580da65e5721b90ed3dddb2'
+  checksum 'd12bf2389a6b57341528a33de62561edd7ef25c23fbf258d48758fbe3d1d8578'
   action :create_if_missing
 end
 
@@ -257,13 +274,13 @@ directory '/var/www/share/public' do
   not_if { File.symlink?('/var/www/share/public') }
 end
 
-nginx_version = '1.11.3-1'
+nginx_version = '1.13.5-1'
 
 # http://nginx.org/en/linux_packages.html
 remote_file "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb" do
   source [
     'http://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/',
-    "nginx_#{nginx_version}~wily_amd64.deb"
+    "nginx_#{nginx_version}~xenial_amd64.deb"
   ].join('')
   action :create_if_missing
 end
@@ -310,6 +327,14 @@ http {
 
   server {
     listen 80;
+    return 301 https://$host$request_uri;
+  }
+
+  server {
+    listen 443;
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/koh110.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/koh110.com/privkey.pem;
 
     root /var/www/share/public;
     index index.html;
