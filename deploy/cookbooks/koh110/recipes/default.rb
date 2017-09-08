@@ -1,13 +1,15 @@
+# rubocop:disable Metrics/BlockLength, Style/IndentHeredoc
+
 # sshd
-service "sshd" do
+service 'sshd' do
   action [:enable]
-  supports :start => true, :status => true, :restart => true, :reload => true
+  supports start: true, status: true, restart: true, reload: true
 end
 
-file "/etc/ssh/sshd_config" do
-  owner "root"
-  group "root"
-  mode "644"
+file '/etc/ssh/sshd_config' do
+  owner 'root'
+  group 'root'
+  mode 0o644
   content <<-"EOS"
 # Package generated configuration file
 # See the sshd_config(5) manpage for details
@@ -103,20 +105,20 @@ end
 
 # iptables
 # https://help.ubuntu.com/community/IptablesHowTo
-execute "iptables" do
-  user "root"
-  group "root"
-  environment({
-    "PATH" => "/sbin:/usr/sbin:/bin:/usr/bin"
-  })
-  command "/tmp/iptables.sh"
+execute 'iptables' do
+  user 'root'
+  group 'root'
+  environment(
+    'PATH' => '/sbin:/usr/sbin:/bin:/usr/bin'
+  )
+  command '/tmp/iptables.sh'
   action :nothing
 end
 
-file "/etc/network/if-pre-up.d/iptablesload" do
-  user "root"
-  group "root"
-  mode 0500
+file '/etc/network/if-pre-up.d/iptablesload' do
+  user 'root'
+  group 'root'
+  mode 0o500
   content <<-'EOF'
 #!/bin/sh
 iptables-restore < /etc/iptables.rules
@@ -124,10 +126,10 @@ exit 0
   EOF
 end
 
-file "/etc/network/if-post-down.d/iptablessave" do
-  user "root"
-  group "root"
-  mode 0500
+file '/etc/network/if-post-down.d/iptablessave' do
+  user 'root'
+  group 'root'
+  mode 0o500
   content <<-'EOF'
 #!/bin/sh
 iptables-save -c > /etc/iptables.rules
@@ -138,10 +140,10 @@ exit 0
   EOF
 end
 
-file "/tmp/iptables.sh" do
-  user "root"
-  group "root"
-  mode 0500
+file '/tmp/iptables.sh' do
+  user 'root'
+  group 'root'
+  mode 0o500
   content <<-'EOF'
 #!/bin/bash
 
@@ -195,51 +197,56 @@ iptables-save -c > /etc/iptables.rules
 exit 0
 exit 1
   EOF
-  notifies :run, "execute[iptables]", :immediately
+  notifies :run, 'execute[iptables]', :immediately
 end
 
 # install Node.js
-nodejs_directory = "/usr/local/src/nodejs"
+nodejs_directory = '/usr/local/src/nodejs'
 
-directory "#{nodejs_directory}" do
-  owner "root"
-  group "root"
-  mode 0755
+directory nodejs_directory do
+  owner 'root'
+  group 'root'
+  mode 0o755
   action :create
 end
 
-nodejs_version = "6.4.0"
+nodejs_version = '6.4.0'
 
 # http://nodejs.org/dist/v{#nodejs_version}/SHASUMS256.txt
 remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
-  source "http://nodejs.org/dist/v#{nodejs_version}/node-v#{nodejs_version}-linux-x64.tar.gz"
-  checksum "990636e44b9f7a270cf82f988e5faecb5850fcda9580da65e5721b90ed3dddb2"
+  source [
+    "http://nodejs.org/dist/v#{nodejs_version}",
+    "/node-v#{nodejs_version}-linux-x64.tar.gz"
+  ].join('')
+  checksum '990636e44b9f7a270cf82f988e5faecb5850fcda9580da65e5721b90ed3dddb2'
   action :create_if_missing
 end
 
-bash "install-nodejs" do
-  user "root"
-  cwd "#{nodejs_directory}"
+bash 'install-nodejs' do
+  user 'root'
+  cwd nodejs_directory
   code <<-"END"
-set -exu -o pipefail
+  set -exu -o pipefail
 
-tar -C /usr/local --strip-components 1 -xaf nodejs-v#{nodejs_version}-linux-x64.tar.gz
+  tar -C /usr/local --strip-components 1 -xaf nodejs-v#{nodejs_version}-linux-x64.tar.gz
 
-echo -n "#{nodejs_version}" > #{nodejs_directory}/nodejs-install.done
+  echo -n "#{nodejs_version}" > #{nodejs_directory}/nodejs-install.done
    END
-   not_if {
-     ::File.exists?("#{nodejs_directory}/nodejs-install.done") &&
-     ::File.open("#{nodejs_directory}/nodejs-install.done").read == nodejs_version
-   }
+  not_if do
+    ::File.exist?("#{nodejs_directory}/nodejs-install.done") &&
+      ::File.open([
+        "#{nodejs_directory}/nodejs-install.done"
+      ].join('')).read == nodejs_version
+  end
 end
 
 # install nginx
-nginx_directory = "/usr/local/src/nginx"
+nginx_directory = '/usr/local/src/nginx'
 
-directory "#{nginx_directory}" do
-  owner "root"
-  group "root"
-  mode 0755
+directory nginx_directory do
+  owner 'root'
+  group 'root'
+  mode 0o755
   action :create
 end
 
@@ -250,33 +257,33 @@ directory '/var/www/share/public' do
   not_if { File.symlink?('/var/www/share/public') }
 end
 
-nginx_version = "1.11.3-1"
+nginx_version = '1.11.3-1'
 
 # http://nginx.org/en/linux_packages.html
 remote_file "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb" do
   source [
-    "http://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/",
+    'http://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/',
     "nginx_#{nginx_version}~wily_amd64.deb"
-  ].join("")
+  ].join('')
   action :create_if_missing
 end
 
-package "nginx" do
+package 'nginx' do
   source "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb"
   provider Chef::Provider::Package::Dpkg
   action :install
 end
 
-execute "test-nginx-configuration" do
-  user "root"
-  group "root"
-  command "/usr/sbin/nginx -t -c /etc/nginx/nginx.conf"
+execute 'test-nginx-configuration' do
+  user 'root'
+  group 'root'
+  command '/usr/sbin/nginx -t -c /etc/nginx/nginx.conf'
   action :nothing
 end
 
-file "/etc/nginx/nginx.conf" do
-  owner "root"
-  group "root"
+file '/etc/nginx/nginx.conf' do
+  owner 'root'
+  group 'root'
   content <<-"EOF"
 user nginx;
 worker_processes auto;
@@ -322,11 +329,11 @@ http {
   }
 }
   EOF
-notifies :run, "execute[test-nginx-configuration]", :delayed
-notifies :reload, "service[nginx]", :delayed
+  notifies :run, 'execute[test-nginx-configuration]', :delayed
+  notifies :reload, 'service[nginx]', :delayed
 end
 
-service "nginx" do
-  supports :status => true, :restart => true, :reload => true
-  action [:enable, :start]
+service 'nginx' do
+  supports status: true, restart: true, reload: true
+  action %i[enable start]
 end

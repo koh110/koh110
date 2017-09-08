@@ -17,8 +17,9 @@ env.colorize_errors = True
 env.remote_interrupt = True
 env.use_ssh_config = True
 env.forward_agent = True
-env.chef_url = ' '.join([
-    'https://packages.chef.io/stable/ubuntu/12.04/chef_12.13.37-1_amd64.deb'
+env.chef_url = ''.join([
+    'https://packages.chef.io/files/stable/chef',
+    '/13.3.42/ubuntu/16.04/chef_13.3.42-1_amd64.deb'
 ])
 
 env.ssh_opts = ''
