@@ -306,7 +306,7 @@ user nginx;
 worker_processes auto;
 worker_rlimit_nofile 65535;
 
-error_log /var/log/nginx.error.log warn;
+error_log /var/log/nginx/error.log warn;
 pid       /var/run/nginx.pid;
 
 events {
