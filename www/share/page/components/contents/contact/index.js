@@ -1,9 +1,7 @@
-'use strict';
+import React from 'react'
+require('./contact.scss')
 
-const React = require('react');
-require('./contact.scss');
-
-module.exports = React.createClass({
+export default class Contact extends React.Component {
   render() {
     return (
       <section className="contact">
@@ -16,6 +14,6 @@ module.exports = React.createClass({
           </a>
         </div>
       </section>
-    );
+    )
   }
-});
+}

@@ -1,8 +1,6 @@
-'use strict';
-
-const React = require('react');
-const classNames = require('classnames');
-require('./social.scss');
+import React from 'react'
+const classNames = require('classnames')
+require('./social.scss')
 
 const socials = [{
   url: 'https://github.com/koh110',
@@ -28,24 +26,24 @@ const socials = [{
 }, {
   url: 'http://qiita.com/koh110',
   classNames: ['qiita']
-}];
+}]
 
-module.exports = React.createClass({
+export default class Socials extends React.Component {
   render() {
     const icons = socials.map((e, i) => {
-      const key = `${i}-${e.url}`;
-      const socialIcon = classNames('social-icon', ...e.classNames);
+      const key = `${i}-${e.url}`
+      const socialIcon = classNames('social-icon', ...e.classNames)
       return (
         <a key={key} className="social-icon-wrapper" target="_blank"
           href={e.url}>
           <i className={socialIcon}></i>
         </a>
-      );
-    });
+      )
+    })
     return (
       <div className="social">
         {icons}
       </div>
-    );
+    )
   }
-});
+}

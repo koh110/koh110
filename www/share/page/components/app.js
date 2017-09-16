@@ -1,22 +1,21 @@
-'use strict';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import classNames from 'classnames'
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const classNames = require('classnames');
+require('ga')
+require('sanitize.css/sanitize.css')
+require('./main.scss')
+import Header from 'header'
+import Contents from 'contents'
+import Footer from 'footer'
 
-require('ga');
-require('main.scss');
-const Contents = require('contents');
-const Header = require('header');
-const Footer = require('footer');
+const smartphone = /iphone|android/.test(window.navigator.userAgent.toLowerCase())
 
-const smartphone = /iphone|android/.test(window.navigator.userAgent.toLowerCase());
-
-const Wrapper = React.createClass({
+class Wrapper extends React.Component {
   render() {
     const wrapperClass = classNames('wrapper', {
       smartphone: smartphone
-    });
+    })
     return (
       <div className={wrapperClass}>
         <Header />
@@ -25,13 +24,13 @@ const Wrapper = React.createClass({
         </div>
         <Footer />
       </div>
-    );
+    )
   }
-});
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
   ReactDOM.render(
     <Wrapper />,
     document.querySelector('.target')
-  );
-});
+  )
+})

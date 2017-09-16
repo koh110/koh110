@@ -1,10 +1,9 @@
-'use strict';
+import React from 'react'
 
-const React = require('react');
+const npmImg = require('./img/npm-logo-simplifed-with-white-space.png')
+require('./work.scss')
 
-const npmImg = require('./img/npm-logo-simplifed-with-white-space.png');
-require('./work.scss');
-const Card = require('./card');
+import Card from './card'
 
 const cards = [{
   title: 'techblog',
@@ -48,14 +47,14 @@ const cards = [{
     src: 'https://i.yimg.jp/images/tecblog/2015-2H/advent_image.jpg'
   },
   description: 'Node.jsのES6対応について'
-}];
+}]
 
-module.exports = React.createClass({
+export default class Work extends React.Component {
   render() {
     const cardElems = cards.map((e, i) => {
-      const key = `${i}-${e.title}`;
-      return (<Card data={e} key={key}/>);
-    });
+      const key = `${i}-${e.title}`
+      return (<Card data={e} key={key}/>)
+    })
     return (
       <section className="work">
         <h1>WORK</h1>
@@ -63,6 +62,6 @@ module.exports = React.createClass({
           {cardElems}
         </div>
       </section>
-    );
+    )
   }
-});
+}

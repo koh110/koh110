@@ -12,10 +12,13 @@
     "react"
   ],
   parserOptions: {
+    "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
   },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
     "no-const-assign": 2,
     "strict": [2, "global"],
@@ -151,7 +154,7 @@
     "quote-props": [0, "as-needed"],
     "quotes": [2, "single", "avoid-escape"],
     "semi-spacing": [1, { "before": false, "after": true }],
-    "semi": [1, "always"],
+    "semi": ["error", "never"],
     "sort-vars": 0,
     "keyword-spacing": [2, { "before": true, "after": true }],
     "space-before-function-paren": [1, { "anonymous": "never", "named": "never" }],

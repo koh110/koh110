@@ -1,9 +1,7 @@
-'use strict';
+import React from 'react'
+require('./about.scss')
 
-const React = require('react');
-require('./about.scss');
-
-module.exports = React.createClass({
+export default class About extends React.Component {
   render() {
     return (
       <section className="about">
@@ -13,6 +11,6 @@ module.exports = React.createClass({
           <p>このサイトはMac Chrome/FireFoxの最新版で動作確認をします。</p>
         </div>
       </section>
-    );
+    )
   }
-});
+}

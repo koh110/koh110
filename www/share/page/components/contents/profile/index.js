@@ -1,11 +1,9 @@
-'use strict';
+import React from 'react'
+require('./profile.scss')
 
-const React = require('react');
-require('./profile.scss');
+import Social from './social'
 
-const Social = require('./social');
-
-module.exports = React.createClass({
+export default class Profile extends React.Component {
   render() {
     return (
       <section className="profile">
@@ -25,6 +23,6 @@ module.exports = React.createClass({
           <Social />
         </div>
       </section>
-    );
+    )
   }
-});
+}
