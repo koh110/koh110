@@ -8,9 +8,7 @@ const DIST_DIRECTORY = `${APP_ROOT}/dist`
 
 module.exports = {
   entry: {
-    app: [
-      `${APP_ROOT}/components/app.js`
-    ]
+    app: webpackConfig.entry.app.splice(2)
   },
   output: {
     path: DIST_DIRECTORY,

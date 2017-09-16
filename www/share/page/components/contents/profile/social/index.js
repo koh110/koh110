@@ -1,36 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 const classNames = require('classnames')
 require('./social.scss')
 
-const socials = [{
-  url: 'https://github.com/koh110',
-  classNames: ['fa', 'fa-github']
-}, {
-  url: 'https://www.facebook.com/kohta110',
-  classNames: ['fa', 'fa-facebook-official']
-}, {
-  url: 'https://twitter.com/koh110',
-  classNames: ['fa', 'fa-twitter']
-}, {
-  url: 'https://jp.linkedin.com/in/ito-kohta-24078410b',
-  classNames: ['fa', 'fa-linkedin-square']
-}, {
-  url: 'https://www.slideshare.net/kohta110',
-  classNames: ['fa', 'fa-slideshare']
-}, {
-  url: 'http://b.hatena.ne.jp/koh110/',
-  classNames: ['hatena']
-}, {
-  url: 'http://koh110.hatenablog.com/',
-  classNames: ['hatena-blog']
-}, {
-  url: 'http://qiita.com/koh110',
-  classNames: ['qiita']
-}]
-
-export default class Socials extends React.Component {
+class Socials extends React.Component {
   render() {
-    const icons = socials.map((e, i) => {
+    const { social } = this.props
+    const icons = social.accounts.map((e, i) => {
       const key = `${i}-${e.url}`
       const socialIcon = classNames('social-icon', ...e.classNames)
       return (
@@ -47,3 +23,7 @@ export default class Socials extends React.Component {
     )
   }
 }
+export default connect(
+  state => ({ state, social: state.social }),
+  { }
+)(Socials)

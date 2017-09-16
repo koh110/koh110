@@ -28,6 +28,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-redux": "^5.0.6",
     "redux": "^3.5.2",
     "sanitize.css": "^5.0.0",
     "sass-loader": "^6.0.6",

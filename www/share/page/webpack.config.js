@@ -8,7 +8,7 @@ module.exports = {
     app: [
       'webpack-dev-server/client?/',
       'webpack/hot/only-dev-server',
-      `${APP_ROOT}/components/app.js`
+      `${APP_ROOT}/index.js`
     ]
   },
   devtool: 'eval-source-map',
@@ -20,7 +20,7 @@ module.exports = {
   resolve: {
     modules: [
       'node_modules',
-      `${APP_ROOT}/components`
+      APP_ROOT
     ],
     extensions: ['.js']
   },

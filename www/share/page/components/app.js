@@ -1,17 +1,16 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 
-require('ga')
 require('sanitize.css/sanitize.css')
 require('./main.scss')
-import Header from 'header'
-import Contents from 'contents'
-import Footer from 'footer'
+
+import Header from './header'
+import Contents from './contents'
+import Footer from './footer'
 
 const smartphone = /iphone|android/.test(window.navigator.userAgent.toLowerCase())
 
-class Wrapper extends React.Component {
+export default class App extends React.Component {
   render() {
     const wrapperClass = classNames('wrapper', {
       smartphone: smartphone
@@ -27,10 +26,3 @@ class Wrapper extends React.Component {
     )
   }
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  ReactDOM.render(
-    <Wrapper />,
-    document.querySelector('.target')
-  )
-})
