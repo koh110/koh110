@@ -7,10 +7,10 @@ from fabric.contrib.project import rsync_project as rsync
 from fabric.utils import abort, puts
 
 env.application = 'koh110'
-env.configure_dir = '/var/configure'
+env.provision_dir = '/var/provision'
 env.public_dir = '/var/www/share/public'
 env.page_dir = '/var/www/share/page'
-env.deploy_dir = '/var/www'
+env.deploy_dir = '/var/www/share'
 env.runtime = 'development'
 
 env.colorize_errors = True
@@ -30,8 +30,10 @@ if env.disable_known_hosts is True:
     ])
 
 
-def configure():
-    local_directory = os.path.join(os.path.dirname(env.real_fabfile), 'deploy')
+def provision():
+    local_directory = os.path.join(
+        os.path.dirname(env.real_fabfile), 'provision'
+    )
     if os.path.exists(local_directory + '/.local/chef.deb') is False:
         local('mkdir -p ' + local_directory + '/.local')
 
@@ -39,28 +41,31 @@ def configure():
             local('curl -fL ' + env.chef_url + ' -o chef.deb')
 
     with hide('running'):
-        sudo('mkdir -p ' + env.configure_dir)
-        sudo('chown -R ' + env.user + ': ' + env.configure_dir)
+        sudo('mkdir -p ' + env.provision_dir)
+        sudo('chown -R ' + env.user + ': ' + env.provision_dir)
         rsync(
             default_opts='-a',
             ssh_opts=env.ssh_opts,
             delete=True, exclude='nodes', local_dir=local_directory + '/',
-            remote_dir=env.configure_dir + '/')
+            remote_dir=env.provision_dir + '/')
 
     # chef clientをインストール
-    with cd(env.configure_dir + '/.local'):
+    with cd(env.provision_dir + '/.local'):
         # chefがインストールされているか確認
         if run('dpkg -l chef', quiet=True).failed:
             sudo('dpkg -i chef.deb')
 
     # chefのレシピをサーバに実行
-    with cd(env.configure_dir):
+    with cd(env.provision_dir):
         recipe = 'recipe[' + env.application + ']'
         sudo('chef-client -z -c client.rb -E %s -o %s' % (env.runtime, recipe))
 
 
 def deploy():
-    local_directory = os.path.join(os.path.dirname(env.real_fabfile), 'www')
+    local_directory = os.path.join(
+        os.path.dirname(env.real_fabfile),
+        'www/share'
+    )
 
     with hide('running'):
         sudo('mkdir -p ' + env.deploy_dir)
@@ -70,8 +75,9 @@ def deploy():
         default_opts='-av', ssh_opts=env.ssh_opts,
         delete=True,
         exclude=[
-            'share/page/dist/',
-            'share/page/node_modules/'
+            'public/',
+            'page/dist/',
+            'page/node_modules/'
         ],
         local_dir=local_directory + '/',
         remote_dir=env.deploy_dir + '/', capture=True)

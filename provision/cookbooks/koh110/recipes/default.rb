@@ -325,6 +325,10 @@ http {
   access_log /var/log/nginx/access.log main;
   charset utf-8;
 
+  upstream apis {
+    server unix:/var/run/apis.sock;
+  }
+
   server {
     listen 80;
     return 301 https://$host$request_uri;
@@ -346,6 +350,10 @@ http {
     proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Path $request_uri;
+
+    location /apis {
+      proxy_pass http://apis;
+    }
 
     location / {
       try_files $uri /index.html;
