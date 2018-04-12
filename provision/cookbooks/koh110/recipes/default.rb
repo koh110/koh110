@@ -210,7 +210,7 @@ cron 'renew-letsencrypt' do
   hour '4'
   day '1'
   user 'root'
-  mailto 'koh110@gmail.com'
+  mailto 'kohta110@gmail.com'
   command %w[
     sudo letsencrypt certonly --webroot -w /var/www/share/public -d koh110.com;
     sudo service nginx reload
