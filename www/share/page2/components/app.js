@@ -13,7 +13,7 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 90vw;
+  max-width: 980px;
   margin: 0 auto;
 `
 

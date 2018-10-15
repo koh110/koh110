@@ -9,6 +9,7 @@ const Root = styled.div`
   justify-content: flex-end;
   font-size: 1rem;
   width: 100%;
+  padding: 0 1.5em;
 `
 
 const LinkWrap = styled.div`

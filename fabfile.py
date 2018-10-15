@@ -9,7 +9,7 @@ from fabric.utils import abort, puts
 env.application = 'koh110'
 env.provision_dir = '/var/provision'
 env.public_dir = '/var/www/share/public'
-env.page_dir = '/var/www/share/page'
+env.page_dir = '/var/www/share/page2'
 env.deploy_dir = '/var/www/share'
 env.runtime = 'development'
 
@@ -78,6 +78,8 @@ def deploy():
             'public/',
             'page/dist/',
             'page/node_modules/'
+            'page2/dist/',
+            'page2/node_modules/'
         ],
         local_dir=local_directory + '/',
         remote_dir=env.deploy_dir + '/', capture=True)

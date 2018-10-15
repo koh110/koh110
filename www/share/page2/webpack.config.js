@@ -5,6 +5,9 @@ const DIST_DIRECTORY = `${APP_ROOT}/dist`
 
 module.exports = {
   entry: {
+    vendor: [
+      `${APP_ROOT}/vendor.js`
+    ],
     app: [
       `${APP_ROOT}/index.js`
     ]
@@ -13,7 +16,7 @@ module.exports = {
   devtool: 'eval-source-map',
   output: {
     path: DIST_DIRECTORY,
-    filename: 'app.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   resolve: {
@@ -47,7 +50,8 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: 'images/[name].[ext]'
+          name: 'images/[name].[ext]',
+          publicPath: '/'
         }
       }]
     }, {
