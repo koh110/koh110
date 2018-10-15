@@ -37,7 +37,7 @@ const About = () => {
   return (
     <Wrapper>
       <Title>About</Title>
-      <div>
+      <div style={{ padding: '0 1em 0'}}>
         <Line>kohswebは個人事業主としての屋号です。</Line>
         <Line>WEBだからこそできることをやっていきたい。</Line>
       </div>
@@ -55,7 +55,9 @@ const About = () => {
             <Line>仕事ではAngular、プライベートはReact派。</Line>
             <Line>Nginx + SPA + expressな構成が好き。</Line>
           </div>
-          <div style={{marginTop: '2em', padding: '0 1em 0 0', borderTop: `1px solid ${borderColor}`}}>
+        </div>
+        <div style={{gridArea: '3/1/4/3', padding: '2em 0 0' }}>
+          <div style={{marginTop: '1em', padding: '0 1em 0 0', borderTop: `1px solid ${borderColor}`}}>
             <h3 style={{margin: '2em 0 1em'}}><AccountBox style={{marginRight: '0.5em'}}/>accounts</h3>
             <ul>
               <Item><a href="https://github.com/koh110" target="_blank" rel="noopener noreferrer">Github</a></Item>
