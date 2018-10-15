@@ -17,7 +17,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([DIST_DIRECTORY]),
     new CopyWebpackPlugin([
-      { from: `${APP_ROOT}/index.html` }
+      { from: `${APP_ROOT}/index.html` },
+      { from: `${APP_ROOT}/img/bg.jpg`, to: 'img' }
     ])
   ]
 }
