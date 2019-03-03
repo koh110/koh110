@@ -28,9 +28,6 @@ const Line = styled.p`
 
 const Item = styled.li`
   padding: 0 2em 1em 0;
-  &:hover {
-    font-size: 15pt;
-  }
 `
 
 const About = () => {
@@ -49,10 +46,10 @@ const About = () => {
         </div>
         <div style={{gridArea: '2/1/3/3', padding: '2em 1em 0' }}>
           <div>
-            <Line>css / フロントエンド / サーバサイド / インフラ整備までWebならなんでも。</Line>
+            <Line>CSS / フロントエンド / サーバサイド / インフラ整備まで Web ならなんでも。</Line>
             <Line>技術を使って驚かせたり楽しませたりが好きです。</Line>
             <Line>JavaScript好きです。普段はNode.jsが多め。</Line>
-            <Line>仕事ではAngular、プライベートはReact派。</Line>
+            <Line>Node.js / Angular / React / TypeScript</Line>
             <Line>Nginx + SPA + expressな構成が好き。</Line>
           </div>
         </div>

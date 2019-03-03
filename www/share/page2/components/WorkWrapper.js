@@ -7,16 +7,15 @@ import Title from './ContentTitle'
 
 const Wrapper = ({children, location}) => {
   const selected = { opacity: 0.3 }
-  const logStyle = { paddingLeft: '1em' }
-  const isLog = location.pathname.includes('/log')
-  const soft = !isLog ? selected : null
-  const log = isLog ? { ...selected, ...logStyle } : logStyle
+  const isSoft = location.pathname.includes('/software')
+  const soft = isSoft ? { ...selected, paddingLeft: '1em' }: { paddingLeft: '1em' }
+  const log = !isSoft ? { ...selected } : null
   return (
     <ContentWrapper>
       <Title>Work</Title>
       <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-        <Link to="/work" style={soft}>Software</Link>
         <Link to="/work/log" style={log}>Log</Link>
+        <Link to="/work/software" style={soft}>Software</Link>
       </div>
       {children}
     </ContentWrapper>

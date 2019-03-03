@@ -4,6 +4,20 @@ import Element from './LogElement'
 
 const logs = [
   {
+    title: 'Callback を撲滅せよ',
+    date: '2018/12/25',
+    url: 'https://techblog.yahoo.co.jp/javascript/nodejs/callback-to-promise/',
+    img: 'https://s.yimg.jp/images/tecblog/website/v1/images/ogp.png',
+    desc: 'CallbackをPromise化する手法について'
+  },
+  {
+    title: 'おつかれさま、MYM 〜僕とMYMのフロントエンド戦争〜',
+    date: '2018/12/25',
+    url: 'https://techblog.yahoo.co.jp/advent-calendar-2018/thankyou-mym/',
+    img: 'https://s.yimg.jp/images/tecblog/2018-2H/thankyou-mym/thankyoumym_ogp.png',
+    desc: '内製チャットシステムMYMのフロントエンドの仕組みについて'
+  },
+  {
     title: '市ヶ谷Geek★Night #18 フロントエンド、マジ卍',
     date: '2018/03/26',
     url: 'https://ichigayageek.connpass.com/event/87792/',
@@ -31,7 +45,7 @@ const logs = [
     title: 'INSIDE FRONTEND',
     date: '2018/02/11',
     url: 'https://inside-frontend.com/#ama-c3-2',
-    img: 'http://inside-frontend.com/img/ogimage_issue2.png',
+    img: 'https://inside-frontend.com/stat/ogimage_issue_3.png',
     desc: 'コンポーネント座談会。React, Angular, Vueのコンポーネントをどう設計しているか。誘って頂いた。'
   },
   {
@@ -58,14 +72,14 @@ const logs = [
     desc: '社内のNode.jsサポートチームのはなし'
   },
   {
-    title: 'techblog',
+    title: 'ヤフーの社内システムを紹介します',
     date: '2016/12/05',
     url: 'https://techblog.yahoo.co.jp/advent-calendar-2016/pozzy/',
     img: 'https://s.yimg.jp/images/tecblog/2016-2H/advent-image.png',
     desc: 'ヤフーの内製IoT社内システムの紹介'
   },
   {
-    title: 'techblog',
+    title: 'ES6時代のNode.js',
     date: '2015/12/02',
     url: 'https://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/',
     img: 'https://i.yimg.jp/images/tecblog/2015-2H/advent_image.jpg',
@@ -79,7 +93,9 @@ const Log = () => {
       <div>
         <h2>Log</h2>
         <div>いままで出たやつを忘れないようにするやつ</div>
-        { logs.map((e, i) => <Element key={`${i}-${e.title}`} { ...e } />) }
+        {logs.map((e, i) => (
+          <Element key={`${i}-${e.title}`} {...e} />
+        ))}
       </div>
     </Wrapper>
   )

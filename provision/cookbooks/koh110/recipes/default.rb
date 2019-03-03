@@ -217,6 +217,19 @@ cron 'renew-letsencrypt' do
   ].join(' ')
 end
 
+cron 'renew-letsencrypt-kohdev' do
+  action :create
+  minute '0'
+  hour '4'
+  day '1'
+  user 'root'
+  mailto 'kohta110@gmail.com'
+  command %w[
+    sudo letsencrypt certonly --webroot -w /var/www/share/public -d koh.dev;
+    sudo service nginx reload
+  ].join(' ')
+end
+
 # install Node.js
 nodejs_directory = '/usr/local/src/nodejs'
 
@@ -336,6 +349,7 @@ http {
 
   server {
     listen 443;
+    server_name  koh110.com;
     ssl on;
     ssl_certificate /etc/letsencrypt/live/koh110.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/koh110.com/privkey.pem;
@@ -351,9 +365,29 @@ http {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Path $request_uri;
 
-    location /apis {
-      proxy_pass http://apis;
+    location / {
+      try_files $uri /index.html;
+      expires -1;
     }
+  }
+
+  server {
+    listen 443;
+    server_name  koh.dev;
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/koh.dev/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/koh.dev/privkey.pem;
+
+    root /var/www/share/public;
+    index index.html;
+
+    proxy_redirect off;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Path $request_uri;
 
     location / {
       try_files $uri /index.html;
