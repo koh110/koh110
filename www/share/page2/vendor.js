@@ -2,7 +2,7 @@ import 'react'
 import 'react-dom'
 import 'react-redux'
 import 'react-router'
-import 'react-router-dom';
+import 'react-router-dom'
 import 'redux'
 import 'sanitize.css/sanitize.css'
 import 'styled-components'

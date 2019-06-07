@@ -1,6 +1,6 @@
 const webpackConfig = require('./webpack.config.js')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const APP_ROOT = __dirname
 const DIST_DIRECTORY = `${APP_ROOT}/dist`
@@ -13,12 +13,10 @@ module.exports = {
   },
   mode: 'production',
   resolve: webpackConfig.resolve,
+  optimization: webpackConfig.optimization,
   module: webpackConfig.module,
   plugins: [
-    new CleanWebpackPlugin([DIST_DIRECTORY]),
-    new CopyWebpackPlugin([
-      { from: `${APP_ROOT}/index.html` },
-      { from: `${APP_ROOT}/img/bg.jpg`, to: 'img' }
-    ])
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([{ from: `${APP_ROOT}/index.html` }, { from: `${APP_ROOT}/img/bg.jpg`, to: 'img' }])
   ]
 }

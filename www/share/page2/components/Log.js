@@ -4,6 +4,14 @@ import Element from './LogElement'
 
 const logs = [
   {
+    title: '関西Node学園 6時限目',
+    date: '2019/05/09',
+    url: 'https://nodejs.connpass.com/event/126358/',
+    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/42/eb/42eb10e3566c37dd6f200049cd04b142.png',
+    desc: 'Node.jsに半年かけてコミットして得た知見について',
+    doc: 'https://speakerdeck.com/koh110/nodejs-commit'
+  },
+  {
     title: 'Callback を撲滅せよ',
     date: '2018/12/25',
     url: 'https://techblog.yahoo.co.jp/javascript/nodejs/callback-to-promise/',

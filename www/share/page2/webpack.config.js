@@ -5,12 +5,8 @@ const DIST_DIRECTORY = `${APP_ROOT}/dist`
 
 module.exports = {
   entry: {
-    vendor: [
-      `${APP_ROOT}/vendor.js`
-    ],
-    app: [
-      `${APP_ROOT}/index.js`
-    ]
+    vendor: [`${APP_ROOT}/vendor.js`],
+    app: [`${APP_ROOT}/index.js`]
   },
   mode: 'development',
   devtool: 'eval-source-map',
@@ -20,11 +16,14 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    modules: [
-      'node_modules',
-      APP_ROOT
-    ],
+    modules: ['node_modules', APP_ROOT],
     extensions: ['.js']
+  },
+  optimization: {
+    splitChunks: {
+      name: 'vendor',
+      chunks: 'initial'
+    }
   },
   devServer: {
     contentBase: APP_ROOT,
@@ -36,65 +35,52 @@ module.exports = {
     historyApiFallback: true
   },
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-object-rest-spread']
-        }
-      }]
-    }, {
-      test: /\.(jpg|jpeg|png|gif|svg)$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: 'img/[name].[ext]',
-          publicPath: '/'
-        }
-      }]
-    }, {
-      test: /\.s?css$/,
-      use: [{
-        loader: 'style-loader'
-      }, {
-        loader: 'css-loader'
-      }, {
-        loader: 'sass-loader',
-        options: {
-          includePaths: [
-            APP_ROOT
-          ]
-        }
-      }, {
-        loader: 'postcss-loader',
-        options: {
-          config: {
-            ctx: {
-              cssnext: {},
-              cssnano: {},
-              autoprefixer: {
-
-              }
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread']
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name].[ext]',
+              publicPath: '/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [APP_ROOT]
             }
           },
-          plugins: (loader) => {
-            require('autoprefixer')({
-              browsers: [
-                'last 1 versions',
-                'ie >= 11',
-                'safari >= 9',
-                'ios >= 9',
-                'android >= 5'
-              ]
-            })
+          {
+            loader: 'postcss-loader'
           }
-        }
-      }]
-    }]
+        ]
+      }
+    ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 }
