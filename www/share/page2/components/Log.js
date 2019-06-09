@@ -1,6 +1,7 @@
 import React from 'react'
 import Wrapper from './WorkWrapper'
 import Element from './LogElement'
+import styled from 'styled-components'
 
 const logs = [
   {
@@ -102,7 +103,7 @@ const Log = () => {
         <h2>Log</h2>
         <div>いままで出たやつを忘れないようにするやつ</div>
         {logs.map((e, i) => (
-          <Element key={`${i}-${e.title}`} {...e} />
+          <Element className="elem" {...e} key={`${i}-${e.title}`} />
         ))}
       </div>
     </Wrapper>

@@ -3,21 +3,46 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Root = styled.section`
+  padding: 1em 0 2em 0;
   display: grid;
   grid-template-columns: 100px 1fr;
-  padding: 1em 0 2em 0;
+  grid-template-areas:
+    'img title'
+    'img desc';
+
+  h3 {
+    margin-bottom: 0;
+  }
+  .img {
+    grid-area: img;
+    place-self: center;
+    img {
+      max-width: 50px;
+    }
+  }
+
+  .title {
+    grid-area: title;
+    color: #007acc;
+  }
+
+  .desc {
+    grid-area: desc;
+  }
 `
 
-const Software = ({url, title, desc, img}) => {
+const Software = ({ url, title, desc, img }) => {
   return (
-    <Root style={{display: 'grid', gridTemplateColumns: '100px 1fr'}}>
-      <div style={{gridArea: '1/1/2/2', justifySelf: 'center', alignSelf: 'center'}}>
-        <a href={url} target="_blank" rel="noopener noreferrer"><img src={img} style={{maxWidth: '50px'}}/></a>
+    <Root>
+      <div className="img">
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <img src={img} />
+        </a>
       </div>
-      <div style={{gridArea: '1/2/2/3'}}>
-        <a href={url} target="_blank" rel="noopener noreferrer"><h3>{title}</h3></a>
-        <p>{desc}</p>
-      </div>
+      <a className="title" href={url} target="_blank" rel="noopener noreferrer">
+        <h3>{title}</h3>
+      </a>
+      <p className="desc">{desc}</p>
     </Root>
   )
 }
