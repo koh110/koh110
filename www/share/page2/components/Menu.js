@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { withRouter, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 const Root = styled.div`
   display: flex;
@@ -10,10 +9,10 @@ const Root = styled.div`
   font-size: 1rem;
   width: 100%;
   padding: 0 1.5em;
-`
 
-const LinkWrap = styled.div`
-  padding-left: 1em;
+  .link-wrap {
+    padding-left: 1em;
+  }
 `
 
 const Menu = ({ location }) => {
@@ -24,30 +23,30 @@ const Menu = ({ location }) => {
 
   return (
     <Root>
-      <LinkWrap>
+      <div className="link-wrap">
         <Link to="/" style={about}>
           About
         </Link>
-      </LinkWrap>
-      <LinkWrap>
+      </div>
+      <div className="link-wrap">
         <a href="https://blog.koh.dev" target="_blank" rel="noopener noreferrer">
           Blog
         </a>
-      </LinkWrap>
-      <LinkWrap>
+      </div>
+      <div className="link-wrap">
         <Link to="/work" style={work}>
           Work
         </Link>
-      </LinkWrap>
-      <LinkWrap>
+      </div>
+      <div className="link-wrap">
         <Link to="/contact" style={contact}>
           Contact
         </Link>
-      </LinkWrap>
+      </div>
     </Root>
   )
 }
 Menu.propTypes = {
   location: PropTypes.object
 }
-export default withRouter(connect()(Menu))
+export default withRouter(Menu)

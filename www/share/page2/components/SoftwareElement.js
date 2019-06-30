@@ -23,7 +23,6 @@ const Root = styled.section`
 
   .title {
     grid-area: title;
-    color: #007acc;
   }
 
   .desc {

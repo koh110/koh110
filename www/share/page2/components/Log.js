@@ -1,7 +1,6 @@
 import React from 'react'
 import Wrapper from './WorkWrapper'
 import Element from './LogElement'
-import styled from 'styled-components'
 
 const logs = [
   {

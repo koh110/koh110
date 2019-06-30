@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './Header'
-import Menu from './Menu';
-import About from './About'
-import Contact from './Contact'
-import Software from './Software'
-import Log from './Log'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Menu from './components/Menu'
+import About from './components/About'
+import Contact from './components/Contact'
+import Software from './components/Software'
+import Log from './components/Log'
 
 const Root = styled.div`
   display: flex;

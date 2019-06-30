@@ -25,7 +25,6 @@ const Root = styled.div`
   }
   .title {
     grid-area: title;
-    color: #007acc;
   }
   .time {
     font-size: 13px;
