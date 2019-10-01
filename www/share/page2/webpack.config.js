@@ -16,7 +16,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    modules: ['node_modules', APP_ROOT],
+    modules: ['node_modules'],
     extensions: ['.js']
   },
   optimization: {
@@ -42,8 +42,15 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread']
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    exclude: ['transform-regenerator']
+                  }
+                ],
+                '@babel/preset-react'
+              ]
             }
           }
         ]
@@ -70,10 +77,7 @@ module.exports = {
             loader: 'css-loader'
           },
           {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [APP_ROOT]
-            }
+            loader: 'sass-loader'
           },
           {
             loader: 'postcss-loader'

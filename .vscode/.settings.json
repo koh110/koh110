@@ -1,0 +1,6 @@
+
+{
+  "files.watcherExclude": {
+    "**/www/page2/dist/**": true
+  }
+}

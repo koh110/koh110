@@ -6,6 +6,12 @@ import twitWebSwitcher from '../img/twit-web-switcher.png'
 
 const softs = [
   {
+    url: 'https://www.npmjs.com/package/rmtcmd',
+    img: npmImage,
+    title: 'rmtcmd',
+    desc: 'async/await でかけるシンプルなSSHクライアント。fabricのような手軽さでデプロイスクリプトを作るために作成'
+  },
+  {
     url: 'https://www.npmjs.com/package/japanese-date',
     img: npmImage,
     title: 'japanese-date',

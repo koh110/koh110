@@ -4,6 +4,21 @@ import Element from './LogElement'
 
 const logs = [
   {
+    title: 'ヤフー福岡 Tech Meetup #5',
+    url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
+    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/76/24/76243196f5fa8d10313054f4dfc44007.png',
+    date: '2019/09/17',
+    desc: '大規模Slackをセキュアに運用するためのTips',
+    doc: 'https://www.slideshare.net/techblogyahoo/slack-yjfukuoka'
+  },
+  {
+    title: 'Node.js徹底攻略 ─ ヤフーのノウハウに学ぶ、パフォーマンス劣化やコールバック地獄との戦い方',
+    url: 'https://employment.en-japan.com/engineerhub/entry/2019/08/08/103000',
+    img: 'https://cdn-ak.f.st-hatena.com/images/fotolife/b/blog-media/20190801/20190801212613.jpg',
+    date: '2019/08/08',
+    desc: 'ヤフーでのNode.js利用についてのインタビュー',
+  },
+  {
     title: '関西Node学園 6時限目',
     date: '2019/05/09',
     url: 'https://nodejs.connpass.com/event/126358/',
