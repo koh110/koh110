@@ -67,7 +67,7 @@ const Accounts = () => {
           </a>
         </li>
         <li>
-          <a href="http://b.hatena.ne.jp/koh110/" target="_blank" rel="noopener noreferrer">
+          <a href="https://b.hatena.ne.jp/koh110/" target="_blank" rel="noopener noreferrer">
             hatena
           </a>
         </li>
@@ -77,7 +77,7 @@ const Accounts = () => {
           </a>
         </li>
         <li>
-          <a href="http://qiita.com/koh110" target="_blank" rel="noopener noreferrer">
+          <a href="https://qiita.com/koh110" target="_blank" rel="noopener noreferrer">
             qiita
           </a>
         </li>

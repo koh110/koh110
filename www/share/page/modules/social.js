@@ -15,13 +15,13 @@ const initialState = {
     url: 'https://www.slideshare.net/kohta110',
     classNames: ['fa', 'fa-slideshare']
   }, {
-    url: 'http://b.hatena.ne.jp/koh110/',
+    url: 'https://b.hatena.ne.jp/koh110/',
     classNames: ['hatena']
   }, {
     url: 'http://koh110.hatenablog.com/',
     classNames: ['hatena-blog']
   }, {
-    url: 'http://qiita.com/koh110',
+    url: 'https://qiita.com/koh110',
     classNames: ['qiita']
   }]
 }

@@ -83,8 +83,8 @@ const logs = [
     title: '東京Node学園祭2017',
     date: '2017/11/25',
     url: 'https://nodefest.jp/2017/schedule.html',
-    img: 'http://nodefest.jp/2017/img/ogimage.png',
-    desc: 'スポンサートークの枠を使って採用とか放置してひたすらNode.jsで作ったシステムの話をしていた。',
+    img: 'https://nodefest.jp/2017/img/ogimage.png',
+    desc: 'スポンサートークの枠を使ってひたすらNode.jsで作ったシステムの話をしていた。',
     doc: 'https://speakerdeck.com/koh110/nodexue-yuan-ji-2017'
   },
   {
