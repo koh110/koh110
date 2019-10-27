@@ -17,20 +17,28 @@ figure {
 }
 
 body {
-  font-family: usual, '游ゴシック体', YuGothic, '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック', 'Yu Gothic',
-    'Yu Gothic', sans-serif, 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-family: 'Roboto', 'Noto Sans JP', '游ゴシック体', YuGothic, '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック',
+    'Yu Gothic', 'Yu Gothic', sans-serif, 'Dosis', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   font-size: 13pt;
-  color: var(--color-black);
+  background: var(--color-background-body);
+  color: var(--color-body);
 }
 
 a {
-  color: #007acc;
+  color: var(--color-link);
   text-decoration: none;
 }
 
 :root {
-  --color-black: #545454;
+  --color-background-body: #ffffff;
+  --color-body: #545454;
   --color-border: rgb(211, 212, 228);
+  --color-link: #1da1f2;
+}
+
+[data-theme='dark'] {
+  --color-background-body: #15202b;
+  --color-body: #ffffff;
 }
 
 @keyframes blink {

@@ -9,10 +9,27 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
+  .title {
+    position: relative;
+    letter-spacing: 0.1em;
+    &:after {
+      position: absolute;
+      margin: 0 0 0 0.2em;
+      content: '';
+      background: #545454;
+      width: 23px;
+      height: 1.2em;
+    }
+    &.end::after {
+      opacity: 0;
+      animation: blink 1s 10;
+    }
+  }
 `
 
 const FixedHeader = styled.div`
-  background-color: #fff;
+  background-color: var(--color-background-body);
   opacity: 0;
   height: 2em;
   display: flex;
@@ -25,26 +42,6 @@ const FixedHeader = styled.div`
 `
 
 const TITLE = 'kohsweb'
-
-const Title = styled.h1`
-  position: relative;
-  letter-spacing: 0.1em;
-  &:after {
-    position: absolute;
-    margin: 0 0 0 0.2em;
-    content: '';
-    background: #545454;
-    width: 23px;
-    height: 1.2em;
-  }
-`
-
-const TitleAnimetionEnd = styled(Title)`
-  &:after {
-    opacity: 0;
-    animation: blink 1s 10;
-  }
-`
 
 function Header() {
   const [fixed, setFixed] = useState(false)
@@ -81,10 +78,12 @@ function Header() {
 
   const titleStyle = !fixed ? { opacity: 1 } : null
   const fixedStyle = fixed ? { opacity: 1 } : null
-  const showTitle = end ? <TitleAnimetionEnd>{TITLE}</TitleAnimetionEnd> : <Title>{title}</Title>
+
   return (
     <Root>
-      <header style={titleStyle}>{showTitle}</header>
+      <header style={titleStyle}>
+        <h1 className={end ? 'title end' : 'title'}>{title}</h1>
+      </header>
       <FixedHeader style={fixedStyle}>
         <h3>{TITLE}</h3>
       </FixedHeader>

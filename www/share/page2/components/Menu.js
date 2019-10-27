@@ -1,21 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { withRouter, Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useLocation, Link } from 'react-router-dom'
+import ToggleOn from '@material-ui/icons/ToggleOn'
+import ToggleOff from '@material-ui/icons/ToggleOff'
+import { setDarkMode, setLightMode } from '../modules/index'
 
 const Root = styled.div`
   display: flex;
   justify-content: flex-end;
   font-size: 1rem;
   width: 100%;
-  padding: 0 1.5em;
 
   .link-wrap {
     padding-left: 1em;
   }
+
+  .dark-mode-toggle {
+    padding-left: 1em;
+  }
 `
 
-const Menu = ({ location }) => {
+export default function Menu() {
+  const location = useLocation()
+  const darkMode = useSelector(state => state.darkMode)
+  const dispatch = useDispatch()
+  const toggleDarkMode = () => {
+    if (darkMode) {
+      dispatch(setLightMode())
+    } else {
+      dispatch(setDarkMode())
+    }
+  }
   const selected = { opacity: 0.3 }
   const about = location.pathname === '/' ? selected : {}
   const work = location.pathname.includes('/work') ? selected : {}
@@ -43,10 +60,13 @@ const Menu = ({ location }) => {
           Contact
         </Link>
       </div>
+      <div className="dark-mode-toggle" onClick={() => toggleDarkMode()}>
+        {darkMode && <ToggleOn />}
+        {!darkMode && <ToggleOff />}
+      </div>
     </Root>
   )
 }
 Menu.propTypes = {
   location: PropTypes.object
 }
-export default withRouter(Menu)

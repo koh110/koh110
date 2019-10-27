@@ -8,8 +8,7 @@ const logs = [
     url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
     img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/76/24/76243196f5fa8d10313054f4dfc44007.png',
     date: '2019/09/17',
-    desc: '大規模Slackをセキュアに運用するためのTips',
-    doc: 'https://www.slideshare.net/techblogyahoo/slack-yjfukuoka'
+    desc: '大規模Slackをセキュアに運用するためのTips'
   },
   {
     title: 'Node.js徹底攻略 ─ ヤフーのノウハウに学ぶ、パフォーマンス劣化やコールバック地獄との戦い方',
