@@ -240,7 +240,7 @@ directory nodejs_directory do
   action :create
 end
 
-nodejs_version = '8.4.0'
+nodejs_version = '12.9.1'
 
 # http://nodejs.org/dist/v{#nodejs_version}/SHASUMS256.txt
 remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
@@ -248,7 +248,7 @@ remote_file "#{nodejs_directory}/nodejs-v#{nodejs_version}-linux-x64.tar.gz" do
     "http://nodejs.org/dist/v#{nodejs_version}",
     "/node-v#{nodejs_version}-linux-x64.tar.gz"
   ].join('')
-  checksum 'd12bf2389a6b57341528a33de62561edd7ef25c23fbf258d48758fbe3d1d8578'
+  checksum '5488e9d9e860eb344726aabdc8f90d09e36602da38da3d16a7ee852fd9fbd91f'
   action :create_if_missing
 end
 
