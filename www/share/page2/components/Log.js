@@ -4,18 +4,25 @@ import Element from './LogElement'
 
 const logs = [
   {
-    title: 'ヤフー福岡 Tech Meetup #5',
-    url: 'https://yahoo-fukuoka.connpass.com/event/142571/',
-    img: 'https://connpass-tokyo.s3.amazonaws.com/thumbs/76/24/76243196f5fa8d10313054f4dfc44007.png',
-    date: '2019/09/17',
-    desc: '大規模Slackをセキュアに運用するためのTips'
+    title: 'ヤフーのフロントエンドと Node.js の関係性',
+    url: 'https://techblog.yahoo.co.jp/entry/20191120782387/',
+    img: 'https://s.yimg.jp/images/tecblog/2019-H2/node.js/ogp_20191115T150404.png',
+    date: '2019/11/20',
+    desc: 'Node.jsがヤフーのフロントエンドでどうやって活用されているのかを歴史を振り返りながら'
+  },
+  {
+    title: 'Frontend Conference Fukuoka 2019',
+    url: 'https://frontend-conf.fukuoka.jp/',
+    img: 'https://frontend-conf.fukuoka.jp/assets/images/ogp.jpg',
+    date: '2019/11/16',
+    desc: 'スポンサーブースでフロントエンドなんでも相談会とフロントエンド総選挙の開催'
   },
   {
     title: 'Node.js徹底攻略 ─ ヤフーのノウハウに学ぶ、パフォーマンス劣化やコールバック地獄との戦い方',
     url: 'https://employment.en-japan.com/engineerhub/entry/2019/08/08/103000',
     img: 'https://cdn-ak.f.st-hatena.com/images/fotolife/b/blog-media/20190801/20190801212613.jpg',
     date: '2019/08/08',
-    desc: 'ヤフーでのNode.js利用についてのインタビュー',
+    desc: 'ヤフーでのNode.js利用についてのインタビュー'
   },
   {
     title: '関西Node学園 6時限目',

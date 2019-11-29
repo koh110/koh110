@@ -6,6 +6,12 @@ import twitWebSwitcher from '../img/twit-web-switcher.png'
 
 const softs = [
   {
+    url: 'https://marketplace.visualstudio.com/items?itemName=koh110.zenvim',
+    img: null,
+    title: 'zenvim',
+    desc: 'VSCode用のVim風拡張。デファクトの拡張が自分の環境では重かったのでシンプルで軽量なものを自作'
+  },
+  {
     url: 'https://www.npmjs.com/package/rmtcmd',
     img: npmImage,
     title: 'rmtcmd',
@@ -36,8 +42,10 @@ const Software = () => {
     <Wrapper>
       <div>
         <h2>Software</h2>
-        <div>いままで作ったやつを忘れないようにするやつ</div>
-        { softs.map((e, i) => <Element key={`${i}-${e.title}`} { ...e } />) }
+        <div>いままで作ったものの備忘録</div>
+        {softs.map((e, i) => (
+          <Element key={`${i}-${e.title}`} {...e} />
+        ))}
       </div>
     </Wrapper>
   )

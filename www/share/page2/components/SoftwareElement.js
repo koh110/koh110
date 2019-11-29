@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Root = styled.section`
@@ -30,13 +29,22 @@ const Root = styled.section`
   }
 `
 
+const Img = ({ url, img }) => {
+  if (!img) {
+    return <></>
+  }
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      <img src={img} />
+    </a>
+  )
+}
+
 const Software = ({ url, title, desc, img }) => {
   return (
     <Root>
       <div className="img">
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          <img src={img} />
-        </a>
+        <Img url={url} img={img} />
       </div>
       <a className="title" href={url} target="_blank" rel="noopener noreferrer">
         <h3>{title}</h3>
@@ -44,12 +52,6 @@ const Software = ({ url, title, desc, img }) => {
       <p className="desc">{desc}</p>
     </Root>
   )
-}
-Software.propTypes = {
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired
 }
 
 export default Software
