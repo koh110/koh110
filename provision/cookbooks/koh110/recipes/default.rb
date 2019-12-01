@@ -287,19 +287,19 @@ directory '/var/www/share/public' do
   not_if { File.symlink?('/var/www/share/public') }
 end
 
-nginx_version = '1.13.5-1'
+nginx_version = '1.17.6-1'
 
 # http://nginx.org/en/linux_packages.html
-remote_file "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb" do
+remote_file "#{nginx_directory}/nginx_#{nginx_version}~bionic_amd64.deb" do
   source [
     'http://nginx.org/packages/mainline/ubuntu/pool/nginx/n/nginx/',
-    "nginx_#{nginx_version}~xenial_amd64.deb"
+    "nginx_#{nginx_version}~bionic_amd64.deb"
   ].join('')
   action :create_if_missing
 end
 
 package 'nginx' do
-  source "#{nginx_directory}/nginx_#{nginx_version}~wily_amd64.deb"
+  source "#{nginx_directory}/nginx_#{nginx_version}~bionic_amd64.deb"
   provider Chef::Provider::Package::Dpkg
   action :install
 end
@@ -337,6 +337,9 @@ http {
 
   access_log /var/log/nginx/access.log main;
   charset utf-8;
+
+  gzip on;
+  gzip_types text/css application/javascript application/json application/font-woff application/font-tff image/gif image/png image/jpeg application/octet-stream;
 
   upstream apis {
     server unix:/var/run/apis.sock;

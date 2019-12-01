@@ -9,6 +9,7 @@ ga.init()
 
 import 'sanitize.css/sanitize.css'
 import './main.scss'
+import './noto-sans.scss'
 
 const store = createStore(reducer)
 
