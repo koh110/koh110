@@ -4,6 +4,13 @@ import Element from './LogElement'
 
 const logs = [
   {
+    title: 'JSConf JP 2019',
+    url: 'https://jsconf.jp/2019/',
+    img: 'https://jsconf.jp/2019/static/logo-fec934935a8b84b24adead6e9feaea09.png',
+    date: '2019/11/30',
+    desc: 'ヤフーのスポンサーブース対応'
+  },
+  {
     title: 'ヤフーのフロントエンドと Node.js の関係性',
     url: 'https://techblog.yahoo.co.jp/entry/20191120782387/',
     img: 'https://s.yimg.jp/images/tecblog/2019-H2/node.js/ogp_20191115T150404.png',
@@ -121,7 +128,7 @@ const Log = () => {
     <Wrapper>
       <div>
         <h2>Log</h2>
-        <div>いままで出たやつを忘れないようにするやつ</div>
+        <div>いままで出たものの備忘録</div>
         {logs.map((e, i) => (
           <Element className="elem" {...e} key={`${i}-${e.title}`} />
         ))}
