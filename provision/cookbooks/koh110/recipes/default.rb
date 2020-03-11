@@ -200,10 +200,6 @@ exit 1
   notifies :run, 'execute[iptables]', :immediately
 end
 
-package 'letsencrypt' do
-  action :upgrade
-end
-
 cron 'renew-letsencrypt' do
   action :create
   minute '0'
@@ -212,21 +208,7 @@ cron 'renew-letsencrypt' do
   user 'root'
   mailto 'kohta110@gmail.com'
   command %w[
-    sudo letsencrypt certonly --webroot -w /var/www/share/public -d koh110.com;
-    sudo service nginx reload
-  ].join(' ')
-end
-
-cron 'renew-letsencrypt-kohdev' do
-  action :create
-  minute '0'
-  hour '4'
-  day '1'
-  user 'root'
-  mailto 'kohta110@gmail.com'
-  command %w[
-    sudo letsencrypt certonly --webroot -w /var/www/share/public -d koh.dev;
-    sudo service nginx reload
+    sudo certbot renew
   ].join(' ')
 end
 
